@@ -40,14 +40,16 @@ namespace OnlineBookstoreManagementSystem.Infrastructure.Data.Models
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
-
+       
         [Required]
         public int SellerId { get; set; }
 
-        [ForeignKey(nameof(SellerId)]
+        [ForeignKey(nameof(SellerId))]
         public Seller Seller { get; set; } = null!;
 
         public string? BuyerId { get; set; }
+
+        public IEnumerable<Order> Orders { get; set; } = new List<Order>();
 
     }
 }

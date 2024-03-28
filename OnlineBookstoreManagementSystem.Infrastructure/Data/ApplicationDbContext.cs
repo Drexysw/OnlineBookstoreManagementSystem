@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineBookstoreManagementSystem.Infrastructure.Data.Models;
 using OnlineBookstoreManagementSystem.Infrastructure.Data.SeedDb;
-using System.Runtime.CompilerServices;
 
 namespace OnlineBookstoreManagementSystem.Data
 {
@@ -23,10 +22,10 @@ namespace OnlineBookstoreManagementSystem.Data
             builder.ApplyConfiguration(new OrderConfiguration());
             base.OnModelCreating(builder);
         }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
-        public DbSet<Book> Books { get; set; } 
-        public DbSet<Category> Categories { get; set; } 
-        public DbSet<Author> Authors { get; set; } 
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<Seller> Sellers { get; set; } = null!;
+        public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Author> Authors { get; set; } = null!;
     }
 }

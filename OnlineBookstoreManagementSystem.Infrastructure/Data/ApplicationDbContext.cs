@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineBookstoreManagementSystem.Infrastructure.Data.Models;
+using OnlineBookstoreManagementSystem.Infrastructure.Data.SeedDb;
 using System.Runtime.CompilerServices;
 
 namespace OnlineBookstoreManagementSystem.Data
@@ -14,13 +15,12 @@ namespace OnlineBookstoreManagementSystem.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Order>()
-                .HasKey(o => new { o.BuyerId, o.BookId });
-
-            builder.Entity<Order>()
-                .HasOne(o => o.Book)
-                .WithMany(o => o.Orders)
-                .OnDelete(DeleteBehavior.Restrict);
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new BookConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new AuthorConfiguration());
+            builder.ApplyConfiguration(new SellerConfiguration());
+            builder.ApplyConfiguration(new OrderConfiguration());
             base.OnModelCreating(builder);
         }
         public DbSet<Order> Orders { get; set; }

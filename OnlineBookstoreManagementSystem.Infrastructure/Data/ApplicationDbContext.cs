@@ -10,7 +10,7 @@ namespace OnlineBookstoreManagementSystem.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -20,6 +20,8 @@ namespace OnlineBookstoreManagementSystem.Data
             builder.ApplyConfiguration(new AuthorConfiguration());
             builder.ApplyConfiguration(new SellerConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
+            
+
             base.OnModelCreating(builder);
         }
         public DbSet<Order> Orders { get; set; } = null!;

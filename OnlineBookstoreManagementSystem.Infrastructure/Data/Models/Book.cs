@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static OnlineBookstoreManagementSystem.Infrastructure.Data.Constants.DataConstants;
+using static OnlineBookstoreManagementSystem.Infrastructure.Data.Constants.DataConstants;   
 namespace OnlineBookstoreManagementSystem.Infrastructure.Data.Models
 {
     public class Book
@@ -26,8 +26,8 @@ namespace OnlineBookstoreManagementSystem.Infrastructure.Data.Models
         public decimal Price { get; set; }
 
         [Required]
-        [Comment("House image url")]
-        public string ImageUrl = string.Empty;
+        [Comment("Book Image URL")]
+        public string ImageUrl { get; set; } = string.Empty;
 
         [Required]
         public int AuthorId { get; set; }

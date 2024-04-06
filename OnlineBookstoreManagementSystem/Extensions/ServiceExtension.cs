@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineBookstoreManagementSystem.Core.Contracts;
+using OnlineBookstoreManagementSystem.Core.Services;
 using OnlineBookstoreManagementSystem.Data;
+using OnlineBookstoreManagementSystem.Infrastructure.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -8,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IBookService, BookService>();
             return services;
         }
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
@@ -15,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            services.AddScoped<IRepository, Repository>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             return services;
         }

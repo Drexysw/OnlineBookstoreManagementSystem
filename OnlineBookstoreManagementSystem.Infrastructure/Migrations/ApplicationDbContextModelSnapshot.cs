@@ -8,7 +8,7 @@ using OnlineBookstoreManagementSystem.Data;
 
 #nullable disable
 
-namespace OnlineBookstoreManagementSystem.Data.Migrations
+namespace OnlineBookstoreManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -143,15 +143,15 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                         {
                             Id = "deal1232-c23-dsds334-sdsk23-b2343431fefe",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8702e96-dfd2-4f9a-86b9-2c1dc1eaf767",
+                            ConcurrencyStamp = "c708d76c-6ce4-4420-85fa-c5e1e874c6d5",
                             Email = "seller@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "seller@gmail.com",
                             NormalizedUserName = "seller@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA8JWHR1bgMtviuEJ7ccaZeenB3hGP5B21OBznMhHSOPAhSa7AKDAvHaFKCaWK5haA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKfqSn/VLRyNyW+Y+4EVWCxfrSrP25mDEIPi2NWaaJCT4ysI4tNnzM5t+xblb9hG0w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f2ed9284-a6cf-486b-85f7-e52a8305ad06",
+                            SecurityStamp = "b5bfa266-b86c-4d35-b496-0a221a102401",
                             TwoFactorEnabled = false,
                             UserName = "seller@gmail.com"
                         },
@@ -159,15 +159,15 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                         {
                             Id = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8b0c598c-27b9-4667-a965-555820c9ace5",
+                            ConcurrencyStamp = "c7709822-dec9-4c1e-b614-ec32a0ef73f4",
                             Email = "guestuser@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "guestuser@gmail.com",
                             NormalizedUserName = "guestuser@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPJwzTsDhWWzVQKBrrQsBqOqxpks3N8YQkjWPJwgT/Klyfdakgugs64tQdc38S4PMg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFaHhqqkXXjzPPOWUqPlg88YXg7HnPiQh2ownBPOcncRIG9f+TIaWkTg6bi2bkA5lg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a44d750a-1a17-42df-a7e6-88e67dc29cdd",
+                            SecurityStamp = "6083ad37-e574-4a3a-8696-f4d62202cfd5",
                             TwoFactorEnabled = false,
                             UserName = "guestuser@gmail.com"
                         });
@@ -335,6 +335,11 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                         .HasColumnType("nvarchar(300)")
                         .HasComment("Book Description");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Book Image URL");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)")
                         .HasComment("Price of the book");
@@ -366,6 +371,7 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                             BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
                             CategoryId = 1,
                             Description = "This is a third series book in the author collection.It represents the author inimaginary situation in the past",
+                            ImageUrl = "https://m.media-amazon.com/images/I/81JJPDNlxSL._AC_UF1000,1000_QL80_.jpg",
                             Price = 40.00m,
                             SellerId = 1,
                             Title = "The silent patient"
@@ -377,6 +383,7 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                             BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
                             CategoryId = 2,
                             Description = "How to manage your budget.Think of a money like a businessman.",
+                            ImageUrl = "https://5.imimg.com/data5/ANDROID/Default/2021/1/AD/UC/ZK/19351533/product-jpeg-1000x1000.jpeg",
                             Price = 60.00m,
                             SellerId = 1,
                             Title = "The Psychology Of Money Book"
@@ -388,6 +395,7 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                             BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
                             CategoryId = 3,
                             Description = "Join in a world full of fantasy and your mind will explode in happiness",
+                            ImageUrl = "https://m.media-amazon.com/images/I/81blQfKsLtL._AC_UF1000,1000_QL80_.jpg",
                             Price = 70.00m,
                             SellerId = 1,
                             Title = "Fairy Tale"

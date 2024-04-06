@@ -9,11 +9,11 @@ using OnlineBookstoreManagementSystem.Data;
 
 #nullable disable
 
-namespace OnlineBookstoreManagementSystem.Data.Migrations
+namespace OnlineBookstoreManagementSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240328130820_seedData")]
-    partial class seedData
+    [Migration("20240406192805_CreateEntities")]
+    partial class CreateEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,40 +139,6 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "deal1232-c23-dsds334-sdsk23-b2343431fefe",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8702e96-dfd2-4f9a-86b9-2c1dc1eaf767",
-                            Email = "seller@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "seller@gmail.com",
-                            NormalizedUserName = "seller@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA8JWHR1bgMtviuEJ7ccaZeenB3hGP5B21OBznMhHSOPAhSa7AKDAvHaFKCaWK5haA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "f2ed9284-a6cf-486b-85f7-e52a8305ad06",
-                            TwoFactorEnabled = false,
-                            UserName = "seller@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8b0c598c-27b9-4667-a965-555820c9ace5",
-                            Email = "guestuser@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "guestuser@gmail.com",
-                            NormalizedUserName = "guestuser@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPJwzTsDhWWzVQKBrrQsBqOqxpks3N8YQkjWPJwgT/Klyfdakgugs64tQdc38S4PMg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a44d750a-1a17-42df-a7e6-88e67dc29cdd",
-                            TwoFactorEnabled = false,
-                            UserName = "guestuser@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -288,29 +254,6 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Age = 45,
-                            Authobriography = "Has been writing psychology books for 20 years.Some of them are know araound the world",
-                            Name = "Alex Michaelides"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Age = 30,
-                            Authobriography = "Keen on psychology since childhood Morgan Housel is one of the briliant people on earth who wrote araound 300 humdreds psychology books",
-                            Name = "Morgan Housel"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Age = 50,
-                            Authobriography = "He is one of the most artistic people on earth",
-                            Name = "Fairy Tale"
-                        });
                 });
 
             modelBuilder.Entity("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Book", b =>
@@ -337,6 +280,11 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                         .HasColumnType("nvarchar(300)")
                         .HasComment("Book Description");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Book Image URL");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)")
                         .HasComment("Price of the book");
@@ -359,41 +307,6 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                     b.HasIndex("SellerId");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 1,
-                            BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
-                            CategoryId = 1,
-                            Description = "This is a third series book in the author collection.It represents the author inimaginary situation in the past",
-                            Price = 40.00m,
-                            SellerId = 1,
-                            Title = "The silent patient"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = 2,
-                            BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
-                            CategoryId = 2,
-                            Description = "How to manage your budget.Think of a money like a businessman.",
-                            Price = 60.00m,
-                            SellerId = 1,
-                            Title = "The Psychology Of Money Book"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = 3,
-                            BuyerId = "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224",
-                            CategoryId = 3,
-                            Description = "Join in a world full of fantasy and your mind will explode in happiness",
-                            Price = 70.00m,
-                            SellerId = 1,
-                            Title = "Fairy Tale"
-                        });
                 });
 
             modelBuilder.Entity("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Category", b =>
@@ -411,23 +324,6 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 3,
-                            Name = "Novel"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Psychology"
-                        },
-                        new
-                        {
-                            Id = 1,
-                            Name = "Thriller"
-                        });
                 });
 
             modelBuilder.Entity("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Order", b =>
@@ -467,14 +363,6 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sellers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "John",
-                            Rating = 5.5
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -533,19 +421,19 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                     b.HasOne("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Category", "Category")
                         .WithMany("Books")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OnlineBookstoreManagementSystem.Infrastructure.Data.Models.Seller", "Seller")
                         .WithMany("Books")
                         .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");

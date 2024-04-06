@@ -1,22 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineBookstoreManagementSystem.Core.Contracts;
 using OnlineBookstoreManagementSystem.Models;
 using System.Diagnostics;
-
 namespace OnlineBookstoreManagementSystem.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public readonly ILogger<HomeController> Logger;
+        public readonly IBookService bookService;
+        public HomeController(
+            ILogger<HomeController> _Logger,
+            IBookService _bookService
+            )
         {
-            _logger = logger;
+            Logger = _Logger;
+            bookService = _bookService;
         }
-
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await bookService.LastThreeBooksAsync();
+
+            return View(model);
         }
+        [AllowAnonymous]
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

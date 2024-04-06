@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace OnlineBookstoreManagementSystem.Infrastructure.Common
 {
-    public class Repostitory : IRepository
+    public class Repository : IRepository
     {
         private readonly ApplicationDbContext context;
-        public Repostitory(ApplicationDbContext _context)
+        public Repository(ApplicationDbContext _context)
         {
             context = _context;
         }

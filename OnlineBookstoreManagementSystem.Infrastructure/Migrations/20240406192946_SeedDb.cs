@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace OnlineBookstoreManagementSystem.Data.Migrations
+namespace OnlineBookstoreManagementSystem.Infrastructure.Migrations
 {
-    public partial class seedData : Migration
+    public partial class SeedDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,8 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "deal1232-c23-dsds334-sdsk23-b2343431fefe", 0, "f8702e96-dfd2-4f9a-86b9-2c1dc1eaf767", "seller@gmail.com", false, false, null, "seller@gmail.com", "seller@gmail.com", "AQAAAAEAACcQAAAAEA8JWHR1bgMtviuEJ7ccaZeenB3hGP5B21OBznMhHSOPAhSa7AKDAvHaFKCaWK5haA==", null, false, "f2ed9284-a6cf-486b-85f7-e52a8305ad06", false, "seller@gmail.com" },
-                    { "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 0, "8b0c598c-27b9-4667-a965-555820c9ace5", "guestuser@gmail.com", false, false, null, "guestuser@gmail.com", "guestuser@gmail.com", "AQAAAAEAACcQAAAAEPJwzTsDhWWzVQKBrrQsBqOqxpks3N8YQkjWPJwgT/Klyfdakgugs64tQdc38S4PMg==", null, false, "a44d750a-1a17-42df-a7e6-88e67dc29cdd", false, "guestuser@gmail.com" }
+                    { "deal1232-c23-dsds334-sdsk23-b2343431fefe", 0, "c708d76c-6ce4-4420-85fa-c5e1e874c6d5", "seller@gmail.com", false, false, null, "seller@gmail.com", "seller@gmail.com", "AQAAAAEAACcQAAAAEKfqSn/VLRyNyW+Y+4EVWCxfrSrP25mDEIPi2NWaaJCT4ysI4tNnzM5t+xblb9hG0w==", null, false, "b5bfa266-b86c-4d35-b496-0a221a102401", false, "seller@gmail.com" },
+                    { "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 0, "c7709822-dec9-4c1e-b614-ec32a0ef73f4", "guestuser@gmail.com", false, false, null, "guestuser@gmail.com", "guestuser@gmail.com", "AQAAAAEAACcQAAAAEFaHhqqkXXjzPPOWUqPlg88YXg7HnPiQh2ownBPOcncRIG9f+TIaWkTg6bi2bkA5lg==", null, false, "6083ad37-e574-4a3a-8696-f4d62202cfd5", false, "guestuser@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -56,18 +56,18 @@ namespace OnlineBookstoreManagementSystem.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "Price", "SellerId", "Title" },
-                values: new object[] { 1, 1, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 1, "This is a third series book in the author collection.It represents the author inimaginary situation in the past", 40.00m, 1, "The silent patient" });
+                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "ImageUrl", "Price", "SellerId", "Title" },
+                values: new object[] { 1, 1, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 1, "This is a third series book in the author collection.It represents the author inimaginary situation in the past", "https://m.media-amazon.com/images/I/81JJPDNlxSL._AC_UF1000,1000_QL80_.jpg", 40.00m, 1, "The silent patient" });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "Price", "SellerId", "Title" },
-                values: new object[] { 2, 2, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 2, "How to manage your budget.Think of a money like a businessman.", 60.00m, 1, "The Psychology Of Money Book" });
+                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "ImageUrl", "Price", "SellerId", "Title" },
+                values: new object[] { 2, 2, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 2, "How to manage your budget.Think of a money like a businessman.", "https://5.imimg.com/data5/ANDROID/Default/2021/1/AD/UC/ZK/19351533/product-jpeg-1000x1000.jpeg", 60.00m, 1, "The Psychology Of Money Book" });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "Price", "SellerId", "Title" },
-                values: new object[] { 3, 3, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 3, "Join in a world full of fantasy and your mind will explode in happiness", 70.00m, 1, "Fairy Tale" });
+                columns: new[] { "Id", "AuthorId", "BuyerId", "CategoryId", "Description", "ImageUrl", "Price", "SellerId", "Title" },
+                values: new object[] { 3, 3, "fbjfif33-c23-ooo21-sdsk23-a3jfjcj224", 3, "Join in a world full of fantasy and your mind will explode in happiness", "https://m.media-amazon.com/images/I/81blQfKsLtL._AC_UF1000,1000_QL80_.jpg", 70.00m, 1, "Fairy Tale" });
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Books_Authors_AuthorId",

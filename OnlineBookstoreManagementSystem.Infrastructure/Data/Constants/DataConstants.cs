@@ -14,8 +14,8 @@ namespace OnlineBookstoreManagementSystem.Infrastructure.Data.Constants
         public const int DescriptionMaxLenght = 300;
         public const int DescriptionMinLenght = 300;
 
-        public const string BookPriceMaximumValue = "150";
-        public const string BookPriceMinimumValue = "5";
+        public const double BookPriceMaximumValue = 150;
+        public const double BookPriceMinimumValue = 5;
 
         public const int AuthorNameMaxLenght = 30;
         public const int AuthorNameMinLenght = 3;

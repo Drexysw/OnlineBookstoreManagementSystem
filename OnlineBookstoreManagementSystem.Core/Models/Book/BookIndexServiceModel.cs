@@ -17,8 +17,5 @@ namespace OnlineBookstoreManagementSystem.Core.Models.Book
         [Required]
         [Display(Name = "Image URL")]
         public string imageUrl { get; set; } = string.Empty;
-        [Required]
-        [Range(BookPriceMinimumValue,BookPriceMaximumValue, ErrorMessage = PriceMessage)]
-        public decimal Price { get; set; }
     }
 }

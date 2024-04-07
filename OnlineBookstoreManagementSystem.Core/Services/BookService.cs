@@ -22,7 +22,6 @@ namespace OnlineBookstoreManagementSystem.Core.Services
                      Id = b.Id,
                      Title = b.Title,
                      imageUrl = b.ImageUrl,
-                     Price = b.Price,
                  })
                  .ToListAsync();
         }

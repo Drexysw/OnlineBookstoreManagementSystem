@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookIndexServiceModel>
+@{
+    ViewData["TItle"] = "Welcome to BookLand";
+    var books = Model.ToList();
+}
+<h2 class="text-center">@ViewData["Title"]</h2>
+@if(!books.Any()){
+    <div class="mt-4 p-5 bg-light">
+        <h1 class="display-4">Welcome to the best books shop worldwise</h1>
+        <p class="lead">
+            There appears to be no books in the display please make a complaint to the admin to add some
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Seller" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add House</a>
+            }
+        </p>
+    </div>
+}
+
+<div class="mb-5"></div>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner"> 
+        @for (int i = 0; i < books.Count(); i++)
+        {
+            var boardgame = books[i];
+            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                <img class="d-block w-100" style="height:800px"
+                     src="@books[i].imageUrl" alt="@books[i].Title">
+
+                    <div class="carousel-captio n d-none d-md-block">
+                        <h5> 
+                            <a class="btn btn-primary" asp-controller="Book" asp-action="Details"
+                           asp-route-id="@books[i].Id"> @books[i].Title</a>
+                        </h5> 
+                    </div> 
+                </div> 
+        } 
+    </div> 
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span> 
+    </button> 
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+        <span class="visually-hidden">Next</span> </button> </div>
+

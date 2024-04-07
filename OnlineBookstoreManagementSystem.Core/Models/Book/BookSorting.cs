@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineBookstoreManagementSystem.Core.Models.Book
 {
-    public class BookIndexViewModel
+    public enum BookSorting
     {
+        Newest = 0,
+        Price = 1
     }
 }

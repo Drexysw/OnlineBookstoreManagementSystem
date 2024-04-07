@@ -25,5 +25,8 @@ namespace OnlineBookstoreManagementSystem.Infrastructure.Data.Constants
 
         public const int SellerNameMaxLengh = 30;
         public const int SellerNameMinLenght = 3;
+
+        public const int BookCategoryNameMaxLenght = 50;
+        public const int BookCategoryNameminLenght = 3;
     }
 }

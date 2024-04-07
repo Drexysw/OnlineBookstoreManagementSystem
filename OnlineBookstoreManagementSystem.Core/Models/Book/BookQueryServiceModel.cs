@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OnlineBookstoreManagementSystem.Core.Models.Book
+{
+    public class BookQueryServiceModel
+    {
+        public int TotalBooksCount { get; set; }
+
+        public IEnumerable<AllBooksQueryModel> Books { get; set; }
+        = new List<AllBooksQueryModel>();
+    }
+}

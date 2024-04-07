@@ -3,7 +3,7 @@ using static OnlineBookstoreManagementSystem.Core.Constants.MessageConstants;
 using static OnlineBookstoreManagementSystem.Infrastructure.Data.Constants.DataConstants;
 namespace OnlineBookstoreManagementSystem.Core.Models.Book
 {
-    public class BookIndexServiceModel
+    public class BookServiceModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = RequiredMessage)]
@@ -11,6 +11,6 @@ namespace OnlineBookstoreManagementSystem.Core.Models.Book
         public string Title { get; set; } = string.Empty;
         [Required]
         [Display(Name = "Image URL")]
-        public string imageUrl { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }

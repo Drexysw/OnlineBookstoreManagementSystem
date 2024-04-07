@@ -15,61 +15,64 @@ namespace OnlineBookstoreManagementSystem.Core.Services
             repository = _repository;
         }
 
-        public async Task<BookQueryServiceModel> AllAsync([FromQuery]string? category = null, 
-            string? searchTerm = null, 
-            BookSorting sorting = BookSorting.Newest, 
-            int currentPage = 1, 
+        public async Task<BookQueryServiceModel> AllAsync([FromQuery] string? category = null,
+            string? searchTerm = null,
+            BookSorting sorting = BookSorting.Newest,
+            int currentPage = 1,
             int booksperpage = 1)
         {
-            var books = repository.AllReadOnly<Book>();
+            var booksToShow = repository.AllReadOnly<Book>();
             var result = new BookQueryServiceModel();
             if (string.IsNullOrEmpty(category) == false)
             {
-                books = books.Where(b => b.Category.Name == category);
+                booksToShow = booksToShow.Where(b => b.Category.Name == category);
             }
             if (string.IsNullOrEmpty(searchTerm) == false)
             {
-                books = books.Where(b => EF.Functions.Like(b.Title.ToLower(), searchTerm.ToLower()));
+                string normalizedSearchTerm = searchTerm.ToLower();
+                booksToShow = booksToShow.Where(b => b.Title.ToLower().Contains( normalizedSearchTerm)||
+                                                              b.Description.ToLower().Contains(normalizedSearchTerm));
             }
-            books = sorting switch
+            booksToShow = sorting switch
             {
-                BookSorting.Price => books.OrderBy(b => b.Price),
-                _ => books.OrderBy(b => b.Id)
+                BookSorting.Price => booksToShow.OrderBy(b => b.Price)
+                                                .ThenBy(b => b.Title),
+                _ => booksToShow.OrderBy(b => b.Id)
             };
-             result.Books =await  books
+             result.Books = await booksToShow
                 .Skip((currentPage - 1) * booksperpage)
                 .Take(booksperpage)
-                .Select(b => new AllBooksQueryModel()
+                .Select(b => new BooksAllServiceModel()
                 {
                     Id = b.Id,
                     Title = b.Title,
-                    imageUrl = b.ImageUrl,
+                    ImageUrl = b.ImageUrl,
                     Price = b.Price
                 })
                 .ToListAsync();
-            result.TotalBooksCount = await books.CountAsync();
+            result.TotalBooksCount = await booksToShow.CountAsync();
             return result;
         }
 
-        public async Task<IEnumerable<AllBooksQueryModel>> AllBooksAsync()
+        public async Task<IEnumerable<BooksAllServiceModel>> AllBooksAsync()
         {
            return await repository.AllReadOnly<Book>()
                 .OrderBy(b => b.Id)
-                .Select(b => new AllBooksQueryModel()
+                .Select(b => new BooksAllServiceModel()
                 {
                     Id = b.Id,
                     Title = b.Title,
-                    imageUrl = b.ImageUrl,
+                    ImageUrl = b.ImageUrl,
                     Price = decimal.Parse(b.Price.ToString("f2")),
                 })
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<CategoryViewModel>> AllCategoriesAsync()
+        public async Task<IEnumerable<BookCategoryServiceModel>> AllCategoriesAsync()
         {
             return await repository.AllReadOnly<Category>()
                 .OrderBy(b => b.Name)
-                .Select(b => new CategoryViewModel()
+                .Select(b => new BookCategoryServiceModel()
                 {
                     Id = b.Id,
                     Name = b.Name,
@@ -77,16 +80,24 @@ namespace OnlineBookstoreManagementSystem.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<BookIndexServiceModel>> LastThreeBooksAsync()
+        public async Task<IEnumerable<string>> AllCategoriesNameAsync()
+        {
+             return await repository.AllReadOnly<Category>()
+                .Select(c => c.Name)
+                .Distinct()
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<BookServiceModel>> LastThreeBooksAsync()
         {
             return await repository.AllReadOnly<Book>()
                 .OrderByDescending(b => b)
                 .Take(3)
-                 .Select(b => new BookIndexServiceModel()
+                 .Select(b => new BookServiceModel()
                  {
                      Id = b.Id,
                      Title = b.Title,
-                     imageUrl = b.ImageUrl,
+                     ImageUrl = b.ImageUrl,
                  })
                  .ToListAsync();
         }

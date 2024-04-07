@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookIndexServiceModel>
+﻿@model IEnumerable<BookServiceModel>
 @{
     ViewData["Title"] = "Home Page";
     var books = Model.ToList();
@@ -20,7 +20,7 @@
         </p>
     </div>
 }
-<partial name="_BookInfoPartial" model="@Model" />
+<partial name="_BookStartPartial" model="@Model" />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

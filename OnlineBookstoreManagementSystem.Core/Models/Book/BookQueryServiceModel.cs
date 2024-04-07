@@ -10,7 +10,7 @@ namespace OnlineBookstoreManagementSystem.Core.Models.Book
     {
         public int TotalBooksCount { get; set; }
 
-        public IEnumerable<AllBooksQueryModel> Books { get; set; }
-        = new List<AllBooksQueryModel>();
+        public IEnumerable<BooksAllServiceModel> Books { get; set; }
+        = new List<BooksAllServiceModel>();
     }
 }

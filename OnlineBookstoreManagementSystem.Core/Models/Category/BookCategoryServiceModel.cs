@@ -3,7 +3,7 @@ using static OnlineBookstoreManagementSystem.Infrastructure.Data.Constants.DataC
 using static OnlineBookstoreManagementSystem.Core.Constants.MessageConstants;
 namespace OnlineBookstoreManagementSystem.Core.Models.Category
 {
-    public class CategoryViewModel
+    public class BookCategoryServiceModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = RequiredMessage)]
